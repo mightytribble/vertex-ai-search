@@ -1,0 +1,12 @@
+{
+    "name": "Vertex AI Search",
+    "display_name": "Vertex AI Search (Grounding)",
+    "description": "Enables grounding with Google Vertex AI Search for chat completions. Requires 'Full' (Service Account) authentication for Vertex AI.",
+    "version": "1.0.0",
+    "author": "MightyTribble",
+    "js": "index.js",
+    "css": "",
+    "requires": [],
+    "optional": [],
+    "setting_section": "API Connections"
+}
