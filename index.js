@@ -1,5 +1,5 @@
-import { extension_settings, renderExtensionTemplateAsync } from '../../extensions.js';
-import { eventSource, event_types, saveSettingsDebounced } from '../../../script.js';
+import { extension_settings } from '../../../extensions.js';
+import { eventSource, event_types, saveSettingsDebounced } from '../../../../script.js';
 
 const EXTENSION_NAME = 'vertex-ai-search';
 
@@ -56,18 +56,17 @@ function onChatCompletionSettingsReady(data) {
 
 // Function to load the settings UI
 async function loadSettings() {
-    const settingsHtml = await renderExtensionTemplateAsync(EXTENSION_NAME, 'settings');
-    $('#extensions_settings').append(settingsHtml);
+  const settingsHtml = await $.get(`scripts/extensions/third-party/${EXTENSION_NAME}/settings.html`);
+  $('#extensions_settings').append(settingsHtml);
 
-    // Bind input to settings
-    const datastoreInput = $('#vertex-ai-search-datastore-id');
-    datastoreInput.val(extension_settings[EXTENSION_NAME].datastoreId);
-    datastoreInput.on('input', () => {
-        extension_settings[EXTENSION_NAME].datastoreId = datastoreInput.val();
-        saveSettingsDebounced();
-    });
+  // Bind input to settings
+  const datastoreInput = $('#vertex-ai-search-datastore-id');
+  datastoreInput.val(extension_settings[EXTENSION_NAME].datastoreId);
+  datastoreInput.on('input', () => {
+    extension_settings[EXTENSION_NAME].datastoreId = datastoreInput.val();
+    saveSettingsDebounced();
+  });
 }
-
 // Entry point
 jQuery(async () => {
     // Load settings panel
